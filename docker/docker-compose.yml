@@ -1,0 +1,18 @@
+version: "3"
+services:
+  FeedbackPrize:
+    image: datascience-notebook
+    container_name: AmexDefaultPrediction
+    user: root
+    privileged: true
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "555:8888"
+    volumes:
+      - ../:/home/jovyan/
+    restart: unless-stopped
+    platform: linux/amd64
+    stdin_open: true
+    command: jupyter notebook --port 8888 --NotebookApp.token='' --ip=0.0.0.0 --allow-root 
